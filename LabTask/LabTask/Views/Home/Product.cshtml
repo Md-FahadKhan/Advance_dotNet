@@ -1,45 +1,126 @@
 ﻿
 @{
     ViewBag.Title = "Product";
+    ViewBag.Title = "Order";
+    ViewBag.Title = "Customer";
 }
 
-<h2>Product</h2>
+<h2 class="text-center">ALL PRODUCT</h2>
 <form>
-  
-    <table border="1" class="table">
-        <tr>
-            <td>Id</td>
-            <td>Name</td>
-            <td>Price</td>
-            <td>Catagory</td>
-            <td>Edit</td>
-            <td>Delete</td>
 
-        </tr>
-        @foreach (var i in Model)
-        {
+    <table border="1" class="table table-hover table-striped table-bordered">
+        <thead class="table-success ">
             <tr>
-                <td>@i.Id</td>
-                <td>@i.Name</td>
-                <td>@i.Price</td>
-                @foreach (var c in ViewBag.Catagory)
-                {
-                    if (c.Id == i.C_Id)
+                <th>ID</th>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>QUANTITY</th>
+                <th>CATAGORY</th>
+                <th>EDIT</th>
+                <th>DELETE</th>
+         </thead>
+            </tr>
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td>@i.Id</td>
+                    <td>@i.Name</td>
+                    <td>@i.Price</td>
+                    <td>@i.Quantity</td>
+                    @foreach (var c in ViewBag.Catagory)
                     {
-                        <td>
-                            @c.Name
-                        </td>
+                        if (c.Id == i.C_Id)
+                        {
+                            <td>
+                                @c.Name
+                            </td>
+
+                        }
 
                     }
-
-                }
-                <td><a class="btn btn-success" href="/Home/EditProduct/@i.Id">Edit</a></td>
-                <td><a class="btn btn-danger" href="/Home/deleteProduct/@i.Id">Delete</a></td>
-            </tr>
-        }
+                    <td><a class="btn btn-success" href="/Home/EditProduct/@i.Id">Edit</a></td>
+                    <td><a class="btn btn-danger" href="/Home/deleteProduct/@i.Id">Delete</a></td>
+                </tr>
+            }
     </table>
     <a class="btn btn-primary" href="/Home/addProduct">Add Product</a>
     <a class="btn btn-success" href="/Home/addCatagory">Add Category</a>
     <a class="btn btn-secondary" href="/Home/EditCatagory">Edit Category</a>
+    <br />
+    <br />
+
+    <h1>Admin Dashboard</h1>
+
+    <table border="1" class="table table-hover table-striped table-bordered" >
+        <thead class="table-primary">
+            <tr>
+                <th>PRODUCT ID</th>
+                <th>PRODUCT NAME</th>
+
+                <th>CATEGORY</th>
+                <th>PRICE</th>
+                <th>QUANTITY</th>
+                <th>ORDER ID</th>
+                <th>CUSTOMER NAME</th>
+                <!-- Add other order fields here -->
+                <th>Status</th>
+
+            </tr>
+        </thead>
+
+        @if (ViewBag.Orders != null && ViewBag.productOrders != null)
+        {
+            foreach (var productorder in ViewBag.productOrders)
+            {
+                <tr>
+                    @foreach (var product in Model)
+                    {
+                        if (product.Id == productorder.P_Id)
+                        {
+                            <td>@product.Id</td>
+                            <td>@product.Name</td>
+                            foreach (var cat in ViewBag.Catagory)
+                            {
+                                if (cat.Id == product.C_Id)
+                                {
+                                    <td>@cat.Name</td>
+                                }
+                            }
+                            <td>@product.Price</td>
+                            <td>@product.Quantity</td>
+
+                        }
+                    }
+                    @foreach(var order in ViewBag.Orders)
+                    {
+                        if(order.Id == productorder.O_Id)
+                        {
+                            <td>@order.Id</td>
+                            <td>@order.Customer_Name</td>
+                        }
+                    }
+
+                     <td>@productorder.Status</td>
+                    @if(productorder.Status == "Pending")
+                    {
+                        <td><a href="/Home/AcceptOrder/@productorder.Id" class="btn btn-success">Accept</a></td>
+                        <td><a href="/Home/RejectOrder/@productorder.Id" class="btn btn-danger">Reject</a></td>
+                     }
+                     else
+                    {
+                        <td>Action finished</td>
+                    }
+                      
+                     <td>
+
+                     </td>
+                </tr>
+            }
+        }
+    </table>
+
+
+
+
 </form>
 

@@ -3,15 +3,19 @@
 @{
     ViewBag.Title = "ProductBuy";
 }
-
-<h2>ProductBuy</h2>
+<a href="/Home/CustomerOrder" class="btn btn-success">Order</a>
+<h2 class="text-center ">PRODUCT BUY</h2>
 <form method="post">
-    <table border="1" class="table">
-        <tr>
-            <th>NAME</th>
-            <th>CATEGORY</th>
-            <th>PRICE</th>
-        </tr>
+
+    <table border="1" class="table table-hover table-striped table-bordered">
+        <thead class="table-success ">
+            <tr>
+                <th>NAME</th>
+                <th>CATEGORY</th>
+                <th>PRICE</th>
+                <th>QUANTITY</th>
+            </tr>
+        </thead>
         @foreach (var product in Model)
         {
             <tr border="1">
@@ -26,9 +30,22 @@
                     }
                 }
                 <td>@product.Price</td>
-                <td>
-                    <input type="checkbox" name="selectedProducts" value="@product.Id" @(IsProductSelected(product.Id) ? "checked" : "") />
-                </td>
+
+                @if (product.Quantity < 1)
+                {
+                    <td>
+                        Sold Out
+                    </td>
+                }
+                else
+                {
+            <td> <input type="checkbox" name="selectedProducts" value="@product.Id" @(IsProductSelected(product.Id) ? "checked" : "") /></td>
+                   
+                }
+
+
+
+
             </tr>
         }
     </table>
@@ -43,3 +60,13 @@
         return selectedProductIds != null && selectedProductIds.Contains(productId.ToString());
     }
 }
+
+
+
+
+
+
+
+
+
+

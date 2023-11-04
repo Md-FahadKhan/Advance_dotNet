@@ -17,6 +17,7 @@ namespace LabTask.EF
         public int Id { get; set; }
         public Nullable<int> O_Id { get; set; }
         public Nullable<int> P_Id { get; set; }
+        public string Status { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }

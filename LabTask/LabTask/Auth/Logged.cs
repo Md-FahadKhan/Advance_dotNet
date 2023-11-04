@@ -11,6 +11,7 @@ namespace Product_catagories.Auth
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             if (httpContext.Session["Name"] != null) return true;
+            if (httpContext.Session["UserType"] != null) return true;
             return false;
         }
     }

@@ -23,6 +23,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="O_Id" ColumnName="O_Id" />
           <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -33,6 +34,17 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="C_Id" ColumnName="C_Id" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ShopModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Usertype" ColumnName="Usertype" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

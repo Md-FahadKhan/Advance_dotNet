@@ -3,18 +3,20 @@
     ViewBag.Title = "Catagory";
 }
 
-<h2>Catagory</h2>
+<h2 class="text-center">CATEGORY</h2>
 <form>
     <a class="btn btn-warning" href="/Home/addCatagory">Add</a>
-    <table border="1" class="table">
-        <tr>
-            <td>Id</td>
-            <td>Name</td>
-            <td>Details</td>
-            <td>Edit</td>
-            <td>Delete</td>
+    <table border="1" class="table table-hover table-striped table-bordered" >
+        <thead class="table-success">
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Details</td>
+                <td>Edit</td>
+                <td>Delete</td>
 
-        </tr>
+            </tr>
+        </thead>
         @foreach (var i in Model)
         {
             <tr>

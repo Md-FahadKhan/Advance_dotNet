@@ -21,8 +21,9 @@ namespace LabTask.EF
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Price { get; set; }
-        public Nullable<int> C_Id { get; set; }
+        public Nullable<int> Price { get; set; }
+        public int C_Id { get; set; }
+        public Nullable<int> Quantity { get; set; }
     
         public virtual Catagory Catagory { get; set; }
         public virtual ICollection<ProductOrder> ProductOrders { get; set; }
